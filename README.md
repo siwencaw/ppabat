@@ -1,8 +1,21 @@
-# Mantine Next Template
+## 🚀 Get Started
 
-Get started with Mantine + Next with just a few button clicks.
-Click `Use this template` button at the header of repository or [follow this link](https://github.com/mantinedev/mantine-next-template/generate) and
-create new repository with `@mantine` packages. Note that you have to be logged in to GitHub to generate template.
+- Simply clone the repository using git command.
+
+```bash
+git clone git@github.com:arrlancore/ppabat.git
+```
+
+- Go to the project directory with command `cd ppabat`
+- Run `yarn` command for installation
+- Run Development Server:
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+- Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Features
 
