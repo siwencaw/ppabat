@@ -24,7 +24,9 @@
     "@mantine/carousel": "6.0.0",
     "@mantine/core": "6.0.0",
     "@mantine/dates": "6.0.0",
+    "@mantine/form": "^6.0.2",
     "@mantine/hooks": "6.0.0",
+    "@mantine/modals": "^6.0.2",
     "@mantine/next": "6.0.0",
     "@mantine/notifications": "6.0.0",
     "@mantine/prism": "6.0.0",
@@ -36,7 +38,9 @@
     "embla-carousel-react": "^7.0.3",
     "next": "13.1.6",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-feather": "^2.0.10",
+    "validator": "^13.9.0"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
@@ -49,6 +53,7 @@
     "@types/jest": "^27.4.1",
     "@types/node": "^18.11.4",
     "@types/react": "18.0.21",
+    "@types/validator": "^13.7.14",
     "@typescript-eslint/eslint-plugin": "^5.30.0",
     "@typescript-eslint/parser": "^5.30.0",
     "babel-loader": "^8.2.4",
