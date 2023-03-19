@@ -4,7 +4,7 @@ import { Table, ScrollArea, Menu, Divider, Drawer, Text, Button } from '@mantine
 import { useDisclosure } from '@mantine/hooks';
 import { notifications } from '@mantine/notifications';
 
-import { Edit2, Send, Save, Trash2 } from 'react-feather';
+import { Edit2, Send, Save, Trash2, MoreHorizontal } from 'react-feather';
 
 import Search from '@/features/student/components/Search';
 import EditUserForm, { Profile } from '@/features/student/components/EditUser';
@@ -146,7 +146,9 @@ export default function Users(/*props*/) {
           <td>
             <Menu>
               <Menu.Target>
-                <Button variant="subtle">...</Button>
+                <Button variant="subtle">
+                  <MoreHorizontal />
+                </Button>
               </Menu.Target>
               <Menu.Dropdown>
                 <Menu.Label>{user.name}</Menu.Label>
