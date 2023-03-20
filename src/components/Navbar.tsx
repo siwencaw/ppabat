@@ -13,6 +13,7 @@ import { useState } from 'react';
 import { IconCalendarStats, IconChevronLeft, IconChevronRight } from '@tabler/icons-react';
 import { IconGauge, IconNotes } from '@tabler/icons';
 import Link from 'next/link';
+import { UserButton } from './UserButton';
 
 const useStyles = createStyles((theme) => ({
   control: {
@@ -50,6 +51,13 @@ const useStyles = createStyles((theme) => ({
 
   chevron: {
     transition: 'transform 200ms ease',
+  },
+  footer: {
+    marginLeft: `calc(${theme.spacing.md} * -1)`,
+    marginRight: `calc(${theme.spacing.md} * -1)`,
+    borderTop: `${rem(1)} solid ${
+      theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
+    }`,
   },
 }));
 
@@ -135,6 +143,7 @@ const navLinks = [
 ];
 
 export default function Navbar(props: NavbarProps) {
+  const { classes } = useStyles();
   return (
     <MantineNavbar
       hidden={!props.opened}
@@ -142,12 +151,20 @@ export default function Navbar(props: NavbarProps) {
       hiddenBreakpoint="sm"
       p="md"
       height="100vh"
-      style={{ paddingTop: -70 }}
+      style={{ paddingTop: -70, paddingBottom: 70 }}
     >
       <MantineNavbar.Section grow>
         {navLinks.map((item) => (
           <LinksGroup {...item} />
         ))}
+      </MantineNavbar.Section>
+
+      <MantineNavbar.Section className={classes.footer}>
+        <UserButton
+          image="https://images.unsplash.com/photo-1482961674540-0b0e8363a005?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80"
+          name="Ann Nullpointer"
+          email="anullpointer@yahoo.com"
+        />
       </MantineNavbar.Section>
     </MantineNavbar>
   );
