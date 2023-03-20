@@ -25,7 +25,9 @@ export default function Header(props: HeaderProps) {
           />
         </MediaQuery>
 
-        <Text size="lg">Pesantren Ali Bin Abi Thalib</Text>
+        <Text size="lg" weight="bold">
+          LOGOSEKOLAH.
+        </Text>
 
         <div
           style={{

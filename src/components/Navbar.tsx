@@ -1,15 +1,118 @@
-import { Navbar as MantineNavbar, Text } from '@mantine/core';
-import { Home, Mail, Settings, Users } from 'react-feather';
-import User from './User';
+import {
+  Box,
+  Collapse,
+  Group,
+  Navbar as MantineNavbar,
+  rem,
+  ThemeIcon,
+  UnstyledButton,
+  createStyles,
+} from '@mantine/core';
+import { useState } from 'react';
 
-function NavLink(props: { name: string; icon: JSX.Element; link: string }) {
+import { IconCalendarStats, IconChevronLeft, IconChevronRight } from '@tabler/icons-react';
+import { IconGauge, IconNotes } from '@tabler/icons';
+import Link from 'next/link';
+
+const useStyles = createStyles((theme) => ({
+  control: {
+    fontWeight: 500,
+    display: 'block',
+    width: '100%',
+    padding: `${theme.spacing.xs} ${theme.spacing.md}`,
+    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
+    fontSize: theme.fontSizes.sm,
+
+    '&:hover': {
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
+      color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+    },
+  },
+
+  link: {
+    fontWeight: 500,
+    display: 'block',
+    textDecoration: 'none',
+    padding: `${theme.spacing.xs} ${theme.spacing.md}`,
+    paddingLeft: rem(31),
+    marginLeft: rem(30),
+    fontSize: theme.fontSizes.sm,
+    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
+    borderLeft: `${rem(1)} solid ${
+      theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
+    }`,
+
+    '&:hover': {
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
+      color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+    },
+  },
+
+  chevron: {
+    transition: 'transform 200ms ease',
+  },
+}));
+
+interface LinksGroupProps {
+  icon: React.FC<any>;
+  label: string;
+  initiallyOpened?: boolean;
+  link?: string;
+  links?: { label: string; link: string }[];
+}
+
+export function LinksGroup({ icon: Icon, label, initiallyOpened, links, link }: LinksGroupProps) {
+  const { classes, theme } = useStyles();
+  const hasLinks = Array.isArray(links);
+  const [opened, setOpened] = useState(initiallyOpened || false);
+  const ChevronIcon = theme.dir === 'ltr' ? IconChevronRight : IconChevronLeft;
+  const items = (hasLinks ? links : []).map((item) => (
+    <Link className={classes.link} href={item.link} key={item.label}>
+      {item.label}
+    </Link>
+  ));
+
   return (
-    <a href={props.link} style={{ all: 'unset' }}>
-      <div style={{ display: 'flex', flexDirection: 'row', marginBottom: 20 }}>
-        {props.icon}
-        <Text style={{ marginLeft: 10 }}>{props.name}</Text>
-      </div>
-    </a>
+    <>
+      {hasLinks ? (
+        <>
+          <UnstyledButton onClick={() => setOpened((o) => !o)} className={classes.control}>
+            <Group position="apart" spacing={0}>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <ThemeIcon variant="light" size={30}>
+                  <Icon size="1.1rem" />
+                </ThemeIcon>
+                <Box ml="md">{label}</Box>
+              </Box>
+              {hasLinks && (
+                <ChevronIcon
+                  className={classes.chevron}
+                  size="1rem"
+                  stroke={1.5}
+                  style={{
+                    transform: opened ? `rotate(${theme.dir === 'rtl' ? -90 : 90}deg)` : 'none',
+                  }}
+                />
+              )}
+            </Group>
+          </UnstyledButton>
+          {hasLinks ? <Collapse in={opened}>{items}</Collapse> : null}
+        </>
+      ) : (
+        <Link style={{ textDecoration: 'none' }} href={link as string} passHref>
+          <UnstyledButton className={classes.control}>
+            <Group position="apart" spacing={0}>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <ThemeIcon variant="light" size={30}>
+                  <Icon size="1.1rem" />
+                </ThemeIcon>
+                <Box ml="md">{label}</Box>
+              </Box>
+            </Group>
+          </UnstyledButton>
+        </Link>
+      )}
+    </>
   );
 }
 
@@ -17,27 +120,34 @@ type NavbarProps = {
   opened: boolean;
 };
 
+const navLinks = [
+  { label: 'Dashboard', icon: IconGauge, link: '/' },
+  { label: 'Siswa', icon: IconNotes, link: '/student' },
+  {
+    label: 'Tahun Ajaran',
+    icon: IconCalendarStats,
+    links: [
+      { label: 'Upcoming releases', link: '/new' },
+      { label: 'Previous releases', link: '/prev' },
+      { label: 'Releases schedule', link: '/login' },
+    ],
+  },
+];
+
 export default function Navbar(props: NavbarProps) {
   return (
     <MantineNavbar
       hidden={!props.opened}
-      width={{ sm: 250, lg: 300 }}
+      width={{ sm: 220, lg: 280 }}
       hiddenBreakpoint="sm"
       p="md"
       height="100vh"
       style={{ paddingTop: -70 }}
     >
       <MantineNavbar.Section grow>
-        <NavLink name="Otthon" icon={<Home />} link="/" />
-        <NavLink name="Felhasználók" icon={<Users />} link="/users" />
-        <NavLink name="Üzenetek" icon={<Mail />} link="/messages" />
-        <NavLink name="Beállítások" icon={<Settings />} link="/settings" />
-
-        <a href="/settings" style={{ all: 'unset', width: '100%' }}>
-          <div style={{ position: 'absolute', bottom: 0 }}>
-            <User />
-          </div>
-        </a>
+        {navLinks.map((item) => (
+          <LinksGroup {...item} />
+        ))}
       </MantineNavbar.Section>
     </MantineNavbar>
   );
