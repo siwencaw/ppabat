@@ -176,7 +176,7 @@ export default function Users(/*props*/) {
               <Menu.Item icon={<IconSend size="0.9rem" stroke={1.5} color={theme.colors.blue[6]} />} onClick={() => sendMessage()}>
                 Kirim Pesan
               </Menu.Item>
-              
+
               <Menu.Item icon={<IconDeviceFloppy size="0.9rem" stroke={1.5} color={theme.colors.blue[6]} />} onClick={() => copyProfile()}>
                 Simpan
               </Menu.Item>

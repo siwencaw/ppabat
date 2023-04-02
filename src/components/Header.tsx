@@ -1,5 +1,6 @@
 import { Burger, Header as MantineHeader, MediaQuery, Text } from '@mantine/core';
 import { ColorSchemeToggle } from './ColorSchemeToggle/ColorSchemeToggle';
+import { Image } from '@mantine/core';
 
 type HeaderProps = {
   opened: boolean;
@@ -24,10 +25,11 @@ export default function Header(props: HeaderProps) {
             mr="xl"
           />
         </MediaQuery>
-
-        <Text size="lg" weight="bold">
+        <Image width={80} src="images/ppabat.PNG" />
+        <Image width={70} src="images/maahad.PNG" />
+        {/* <Text size="lg" weight="bold">
           LOGOSEKOLAH.
-        </Text>
+        </Text> */}
 
         <div
           style={{
