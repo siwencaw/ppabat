@@ -18,7 +18,7 @@ export default function User() {
   const { classes } = useStyles();
 
   const name = 'John Doe Test';
-  const email = 'john@doe.com';
+  const nisn = 'john@doe.com';
 
   const initials = name.split(' ').map((word) => word[0]);
 
@@ -35,7 +35,7 @@ export default function User() {
           </Text>
 
           <Text color="dimmed" size="xs">
-            {email}
+            {nisn}
           </Text>
         </div>
       </Group>

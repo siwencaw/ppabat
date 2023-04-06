@@ -31,40 +31,48 @@ import {
 
 const MOCKUP_USERS = [
   {
-    name: 'John Doe',
-    email: 'john@doe.com',
-    address: 'Mankato Mississippi 96522, Nulla st. 10',
-    workplace: 'Samsung',
-    phone: '(257) 563-7401',
+    name: 'Abdullah Faros',
+    nisn: '0222001',
+    nik: '1372012003100001',
+    gender: 'Laki-laki',
+    placeOfBirth: 'Solok',
+    dateOfBirth: '23 Maret 2010',
+    address: 'Kampai Tabu Karambia Lubuk Sikarah',
+    fathersName: 'Aldu Razab',
+    mothersName: 'Yusmalinda',
+    entryYear: '2002',
+    livingXliving: 'Mukim',
+    province: 'Sumatera Barat',
+    regency: 'Solok',
   },
-  {
-    name: 'Cecilia Chapman',
-    email: 'Cecilia@doe.com',
-    address: 'Tamuning PA 10855, Sodales Av. 4264',
-    workplace: 'Apple',
-    phone: '(786) 713-8616',
-  },
-  {
-    name: 'Kyla Olsen',
-    email: 'Kyla@doe.com',
-    address: 'Chelsea MI 67708, Nunc Road 4',
-    workplace: 'Microsoft',
-    phone: '(947) 278-5929',
-  },
-  {
-    name: 'Nyssa Vazquez',
-    email: 'Nyssa@doe.com',
-    address: 'Latrobe DE 38100, Viverra. Avenue',
-    workplace: 'Google',
-    phone: '(608) 265-2215',
-  },
-  {
-    name: 'Aaron Hawkins',
-    email: 'Aaron@doe.com',
-    address: 'Santa Rosa MN 98804, Tortor. Street 42',
-    workplace: 'Facebook',
-    phone: '(959) 119-8364',
-  },
+  // {
+  //   name: 'Cecilia Chapman',
+  //   nisn: 'Cecilia@doe.com',
+  //   address: 'Tamuning PA 10855, Sodales Av. 4264',
+  //   workplace: 'Apple',
+  //   phone: '(786) 713-8616',
+  // },
+  // {
+  //   name: 'Kyla Olsen',
+  //   nisn: 'Kyla@doe.com',
+  //   address: 'Chelsea MI 67708, Nunc Road 4',
+  //   workplace: 'Microsoft',
+  //   phone: '(947) 278-5929',
+  // },
+  // {
+  //   name: 'Nyssa Vazquez',
+  //   nisn: 'Nyssa@doe.com',
+  //   address: 'Latrobe DE 38100, Viverra. Avenue',
+  //   workplace: 'Google',
+  //   phone: '(608) 265-2215',
+  // },
+  // {
+  //   name: 'Aaron Hawkins',
+  //   nisn: 'Aaron@doe.com',
+  //   address: 'Santa Rosa MN 98804, Tortor. Street 42',
+  //   workplace: 'Facebook',
+  //   phone: '(959) 119-8364',
+  // },
 ];
 
 export default function Users(/*props*/) {
@@ -92,10 +100,22 @@ export default function Users(/*props*/) {
     const filteredUsers = users.filter(
       (user) =>
         user.name.toLowerCase().includes(search) ||
-        user.email.toLowerCase().includes(search) ||
+        user.nisn.toLowerCase().includes(search) ||
+        // user.address.toLowerCase().includes(search) ||
+        // user.workplace.toLowerCase().includes(search) ||
+        // user.phone.includes(search)
+        user.nik.toLowerCase().includes(search) ||
+        user.gender.toLowerCase().includes(search) ||
+        user.placeOfBirth.toLowerCase().includes(search) ||
+        user.dateOfBirth.toLowerCase().includes(search) ||
         user.address.toLowerCase().includes(search) ||
-        user.workplace.toLowerCase().includes(search) ||
-        user.phone.includes(search)
+        user.fathersName.toLowerCase().includes(search) ||
+        user.mothersName.toLowerCase().includes(search) ||
+        user.entryYear.toLowerCase().includes(search) ||
+        user.livingXliving.toLowerCase().includes(search) ||
+        user.province.toLowerCase().includes(search) ||
+        user.regency.toLowerCase().includes(search)
+
     );
 
     setUsers(filteredUsers);
@@ -157,10 +177,21 @@ export default function Users(/*props*/) {
       users.map((user: Profile, index) => (
         <tr key={index}>
           <td>{user.name}</td>
-          <td>{user.email}</td>
-          <td>{user.address}</td>
+          <td>{user.nisn}</td>
+          {/* <td>{user.address}</td>
           <td>{user.workplace}</td>
-          <td>{user.phone}</td>
+          <td>{user.phone}</td> */}
+          <td>{user.nik}</td>
+          <td>{user.gender}</td>
+          <td>{user.placeOfBirth}</td>
+          <td>{user.dateOfBirth}</td>
+          <td>{user.address}</td>
+          <td>{user.fathersName}</td>
+          <td>{user.mothersName}</td>
+          <td>{user.entryYear}</td>
+          <td>{user.livingXliving}</td>
+          <td>{user.province}</td>
+          <td>{user.regency}</td>
           <td>
             <TableActionMenu>
               <Menu.Label>{user.name}</Menu.Label>
@@ -224,11 +255,19 @@ export default function Users(/*props*/) {
           <Table striped highlightOnHover>
             <thead>
               <tr>
-                <th>Name</th>
-                <th>E-mail</th>
-                <th>Address</th>
-                <th>Workplace</th>
-                <th>Phone</th>
+                <th>Nama</th>
+                <th>NISN</th>
+                <th>NIK</th>
+                <th>Jenis Kelamin</th>
+                <th>Tempat Lahir</th>
+                <th>Tanggal Lahir</th>
+                <th>Alamat</th>
+                <th>Nama Bapak</th>
+                <th>Nama Ibu</th>
+                <th>Tahun Masuk</th>
+                <th>Mukim/Tidak Mukim</th>
+                <th>Provinsik</th>
+                <th>Kabupaten</th>
                 {/* <th>Action</th> */}
               </tr>
             </thead>
